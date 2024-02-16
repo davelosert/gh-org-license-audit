@@ -13,8 +13,8 @@ After identifying any unwanted licenses or dependencies, you can utilize the [De
 - [Python][python] `>= 3.10`
 - [pip][python-pip] `>= 23.x`
   - `pip install ghastoolkit` (`>= 0.10.0`)
-- [gh-cli][gh-cli] (optional)
-- GitHub Personal Access Token (PAT)
+- [gh-cli][gh-cli]
+- [GitHub Personal Access Token (PAT)][pats]
   - scoped to the organization you want to audit
   - allowed access to **All repositories**
   - and the Repository Permissions `Metadata` and `Contents` set to `read-only`
@@ -56,7 +56,7 @@ GITHUB_TOKEN=<token> gh org-license-audit export-deps --org <org>
 This command exports the licenses of all dependencies in a GitHub organization to a CSV file.
 
 > [!IMPORTANT]
-> For large organizations, this command may take several hours to run. It needs to fetch all the [SBOMs](https://docs.github.com/en/rest/dependency-graph/sboms?apiVersion=2022-11-28) from all the repositories in the organization, while respecting the primary and secondary [GitHub API Rate Limits](https://docs.github.com/en/enterprise-cloud@latest/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
+> For large organizations, this command may take several hours to run. It needs to fetch all the [SBOMs][sboms] from all the repositories in the organization, while respecting the primary and secondary [GitHub API Rate Limits][rate-limits].
 
 You can run this command with the following options:
 
@@ -67,7 +67,7 @@ You can run this command with the following options:
 | --target-csv | The path to the CSV file to write the licenses to.                                  | dependencies.csv |
 
 > [!NOTE]
-> This command may generate 404 errors during execution. These errors occur when a repository is encountered where the [Dependency Graph](https://docs.github.com/en/enterprise-cloud@latest/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) is disabled. These errors can be disregarded, but be aware that no dependency or license information can be collected for these repositories.
+> This command may generate 404 errors during execution. These errors occur when a repository is encountered where the [Dependency Graph][dependency-graph] is disabled. These errors can be disregarded, but be aware that no dependency or license information can be collected for these repositories.
 
 ![Screenshot of a 404 Error which can happen during running this script](../docs/404-error.png)
 
@@ -93,3 +93,6 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 [python]: https://www.python.org/
 [python-pip]: https://pip.pypa.io/en/stable
 [gh-cli]: https://cli.github.com/
+[pats]: https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens
+[rate-limits]: https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens
+[dependency-graph]: https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens
