@@ -44,10 +44,12 @@ class CLI():
 
         self.export_deps_parser = subparsers.add_parser("export-deps", parents=[debug_parser, token_parser], help="Export a list of all Dependencies in your organizations, their licenses and a count in how many repositories this is present to a CSV File." )
         self.export_deps_parser.add_argument(
-            "--csv", 
+            "--target-csv", 
             help="The name of the output file",
             dest="csv",
-            default="dependencies.csv")
+            default="dependencies.csv"
+        )
+
         self.export_deps_parser.add_argument(
             "-o",
             "--github-org", 
