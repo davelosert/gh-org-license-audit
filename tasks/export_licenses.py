@@ -44,4 +44,4 @@ class DepsExporter:
             writer.writerow(["Dependency", "Version", "Licenses", "Count"])
 
             for dep, count in dependencies.items():
-                writer.writerow([urllib.parse.unquote(dep.fullname), dep.version, dep.license or "", str(count)])
+                writer.writerow([urllib.parse.unquote(dep.fullname), dep.version, dep.license or "UNKNOWN", str(count)])
