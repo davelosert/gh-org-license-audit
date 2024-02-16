@@ -53,8 +53,6 @@ gh org-license-audit export-deps --org <org> --token <token> --target-csv <csv-f
 GITHUB_TOKEN=<token> gh org-license-audit export-deps --org <org>
 ```
 
-![Screenshot of the license.csv](./docs/licenses-csv.png)
-
 This command exports the licenses of all dependencies in a GitHub organization to a CSV file.
 
 > [!IMPORTANT]
@@ -78,6 +76,8 @@ You can run this command with the following options:
 ```shell
 gh org-license-audit aggregate-licenses --source-csv <csv-file-path> --target-csv <csv-file-path>
 ```
+
+![Screenshot of the license.csv](./docs/licenses-csv.png)
 
 This command aggregates all licenses previously identified by the `export-deps` command and creates a new CSV file containing all licenses and a count of the packages that use them.
 
