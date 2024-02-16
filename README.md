@@ -1,8 +1,10 @@
 # GitHub Organization License Audit Tool
 
-This tool is designed to audit the licenses of dependencies in a GitHub organization. It's written in Python and uses the `ghastoolkit` library to interact with GitHub's API.
+This GitHub CLI Extension is designed to audit the licenses of dependencies within a GitHub organization. It enables you to generate a CSV file containing all packages used within an organization and their corresponding licenses.
 
 ![Screenshot of an output CSV](./docs/dependencies-csv.png)
+
+After identifying any unwanted licenses or dependencies, you can utilize the [Dependency Graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) to locate all repositories in your organization that are using these dependencies.
 
 ## Getting Started
 
@@ -19,7 +21,7 @@ This tool is designed to audit the licenses of dependencies in a GitHub organiza
 
 ### 📦 Installing
 
-This is a gh CLI Extension. To install and setup the CLI tool, you can use the following commands:
+This is a [GitHub CLI](gh-cli) Extension. To install and setup the CLI tool, you can use the following commands:
 
 ```bash
 # install extension
@@ -40,7 +42,7 @@ gh extension upgrade org-license-audit
 
 ## Usage
 
-The tool currently supports two commands which you can run serially
+The tool currently supports two commands which you can run serially.
 
 ### Export Licenses
 
@@ -54,7 +56,7 @@ GITHUB_TOKEN=<token> gh org-license-audit export-deps --org <org>
 This command exports the licenses of all dependencies in a GitHub organization to a CSV file.
 
 > [!IMPORTANT]
-> On large organization, this command can take a few hours to run as it needs to fetch all the [SBOMs](https://docs.github.com/en/rest/dependency-graph/sboms?apiVersion=2022-11-28) from all the repositories in the organization while respecting the primary and secondary [GitHub API Rate Limits](https://docs.github.com/en/enterprise-cloud@latest/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28) (which will automatically be handled for you)
+> For large organizations, this command may take several hours to run. It needs to fetch all the [SBOMs](https://docs.github.com/en/rest/dependency-graph/sboms?apiVersion=2022-11-28) from all the repositories in the organization, while respecting the primary and secondary [GitHub API Rate Limits](https://docs.github.com/en/enterprise-cloud@latest/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28).
 
 You can run this command with the following options:
 
@@ -65,7 +67,7 @@ You can run this command with the following options:
 | --target-csv | The path to the CSV file to write the licenses to.                                  | dependencies.csv |
 
 > [!NOTE]
-> This command might produce 404 Errors while it's running. This happens if a repository is found where the [Dependency Graph](https://docs.github.com/en/enterprise-cloud@latest/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) is disabled. You can ignore these - but please be aware that for these repositories, no Dependency- and License Information can be collected.
+> This command may generate 404 errors during execution. These errors occur when a repository is encountered where the [Dependency Graph](https://docs.github.com/en/enterprise-cloud@latest/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) is disabled. These errors can be disregarded, but be aware that no dependency or license information can be collected for these repositories.
 
 ![Screenshot of a 404 Error which can happen during running this script](../docs/404-error.png)
 
@@ -75,7 +77,7 @@ You can run this command with the following options:
 gh org-license-audit aggregate-licenses --source-csv <csv-file-path> --target-csv <csv-file-path>
 ```
 
-This command aggregates all licenses previously found by the `export-deps` command and create a new CSV with all licenses and a count of the packages using them.
+This command aggregates all licenses previously identified by the `export-deps` command and creates a new CSV file containing all licenses and a count of the packages that use them.
 
 You can run this command with the following options:
 
