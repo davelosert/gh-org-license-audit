@@ -53,6 +53,8 @@ gh org-license-audit export-deps --org <org> --token <token> --target-csv <csv-f
 GITHUB_TOKEN=<token> gh org-license-audit export-deps --org <org>
 ```
 
+![Screenshot of the license.csv](./docs/licenses-csv.png)
+
 This command exports the licenses of all dependencies in a GitHub organization to a CSV file.
 
 > [!IMPORTANT]
